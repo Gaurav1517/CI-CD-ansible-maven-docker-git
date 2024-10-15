@@ -1,0 +1,56 @@
+pipeline{
+    agent any
+    tools {
+        maven 'maven'
+    }
+    environment {
+        DOCKER_TAG = getVersion()
+    }
+
+    stages{
+        stage('SCM Github'){
+            steps{
+                git branch: 'main', credentialsId: 'container_jenkins', url: 'https://github.com/Gaurav1517/CI-CD-ansible-maven-docker-git.git'
+            }
+        }
+        stage('Maven Build'){
+            steps{
+                sh "pwd"
+                dir('maven-java-app') {
+                    // Your steps within the new directory
+                    sh 'pwd'  // Prints the current directory
+                    sh "mvn clean package"
+                }
+                
+            }
+        }
+        stage('Docker Build'){
+            steps{
+                sh "pwd"
+                dir('maven-java-app') {
+                    sh "docker build . -t gchauhan1517/java-app:${DOCKER_TAG} "
+                }
+            }
+        }
+        stage('DockerHub Push'){
+            steps{
+                sh "pwd"
+                withCredentials([string(credentialsId: 'gchauhan1517', variable: 'dockerHubPwd')]) {
+                     sh "docker login -u gchauhan1517 -p ${dockerHubPwd} "
+                }
+                sh "docker push gchauhan1517/java-app:${DOCKER_TAG}"
+            }
+        }
+        stage('Docker Deploy'){
+            steps{
+                sh "pwd"
+                ansiblePlaybook credentialsId: 'private-key', disableHostKeyChecking: true, extras: "-e DOCKER_TAG=${DOCKER_TAG}", installation: 'ansible', inventory: 'maven-java-app/dev.inv', playbook: 'maven-java-app/deploy-docker.yml', vaultTmpPath: ''
+            }
+        }
+    }
+}
+
+def getVersion(){
+	def commitHash = sh returnStdout: true, script: 'git rev-parse --short HEAD'
+	return commitHash
+}
