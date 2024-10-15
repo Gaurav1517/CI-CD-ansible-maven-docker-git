@@ -23,7 +23,7 @@
         state: present
 
     - name: Start the container
-      docker_container:
+      community.docker.docker_container:
         name: java-app
         image: "gchauhan1517/java-app:{{ DOCKER_TAG }}"
         state: started
