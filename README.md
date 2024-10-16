@@ -54,7 +54,8 @@ export PATH=$MAVEN_HOME/bin:$PATH
 Permanent environment variable configure 
 Add the following lines to the user profile file (.profile).
 vim ~/.bashrc
-# Set Maven environment variables
+
+Set Maven environment variables
 export MAVEN_HOME=/opt/apache-maven-3.9.9
 export PATH=$MAVEN_HOME/bin:$PATH
 
