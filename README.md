@@ -5,6 +5,7 @@ Building CD/CD pipeline with Jenkins, Docker, Maven, Ansible, Git.
 
 Configure Jenkins on Jenkins server and also required some tools 
 like, git maven, ansible
+
 **Install git**
 ```bash
 yum install git* -y
@@ -17,7 +18,11 @@ git --version
 Install maven 
 Dependencies of maven 
 OpenJDK 
-The current version is Java 17 but the command yum list -a | grep openjdk shows only available OpenJDK versions are 17 and 21.We will install JDK using binaries and setting some required environment variables.
+The current version is Java 17 but the command 
+```bash
+yum list -a | grep openjdk 
+```
+shows only available OpenJDK versions are 17 and 21.We will install JDK using binaries and setting some required environment variables.
 
 Download the JDK Binaries
 Go to the URL: https://www.oracle.com/java/technologies/downloads/#java17 Copy the download link for Linux/x64 build. Then use the below command to download and extract it.
