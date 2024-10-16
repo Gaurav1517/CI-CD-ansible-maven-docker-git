@@ -87,7 +87,7 @@ apache-maven-3.9.9  cni  containerd  tomcat
 ```
 
 **Step 2: Setting M2_HOME and Path Variables*
-**Temporary  environment variable path set**
+Temporary  environment variable path set
 ```bash
 export MAVEN_HOME=/opt/apache-maven-3.9.9
 export PATH=$MAVEN_HOME/bin:$PATH
@@ -95,7 +95,9 @@ export PATH=$MAVEN_HOME/bin:$PATH
 
 **Permanent environment variable configure**
 Add the following lines to the user profile file (.profile).
+```bash
 vim ~/.bashrc
+```
 
 **Set Maven environment variables**
 ```bash
@@ -133,9 +135,8 @@ which ansible
 
 ## Install plugin on Jenkins dashboard
 Dashboard > Manage Jenkins > Plugins > Available plugins > Search available plugins: Ansible plugins > Install > Restart Jenkins when installation is completed and no jobs are running. 
-> login to Jenkins Dashboard. 
-Dashboard > Manage Jenkins > Tools > Ansible installations > Add Ansible > Name:ansible 
-> Path to ansible executables directory: /usr/bin > Apply > Save 
+login to Jenkins Dashboard. 
+Dashboard > Manage Jenkins > Tools > Ansible installations > Add Ansible > Name:ansible > Path to ansible executables directory: /usr/bin > Apply > Save 
 
 ## Create pipeline with name java-app-pipeline
 **Refer to Jenkinsfile* 
