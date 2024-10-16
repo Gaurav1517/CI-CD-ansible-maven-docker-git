@@ -25,7 +25,7 @@
 
     - name: Image Pull Docker hub
       community.docker.docker_image:
-        name: "gchauhan1517/java-app:${DOCKER_TAG}"
+        name: "gchauhan1517/java-app:{{ DOCKER_TAG }}"
         source: pull 
 
     - name: Start the Java application container
