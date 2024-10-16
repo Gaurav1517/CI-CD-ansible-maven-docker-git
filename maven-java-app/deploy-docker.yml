@@ -21,11 +21,6 @@
       pip:
         name: docker
         state: present
-    
-    - name: Log into DockerHub
-      community.docker.docker_login:
-        username: gchauhan1517
-        password: Docker_8115230
 
 
     - name: Image Pull Docker hub
