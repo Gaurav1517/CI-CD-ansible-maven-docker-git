@@ -56,7 +56,7 @@ Go to the URL: https://maven.apache.org/download.cgi Copy the link for the “Bi
 
 ```bash
 wget https://dlcdn.apache.org/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.tar.gz
-```bash
+```
 **Check package**
 ```bash
 ls
@@ -71,10 +71,12 @@ ls
 ```
 **Output Example**
 apache-maven-3.9.9  apache-maven-3.9.9-bin.tar.gz  
+
 **Move file  to /opt/ directory** 
 ```bash
 mv apache-maven-3.9.9 /opt/
 ```
+
 **Check**
 ```bash
 ls /opt/
@@ -148,10 +150,12 @@ usermod -a -G docker jenkins
 ```
 **Restart jenkins**
 ```bash
-#systemctl restart jenkins.service
-Start & enable docker service
-systemctl start docker.service
-systemctl enable docker.service
+systemctl restart jenkins.service
+```
+
+**Start & enable docker service**
+```bash
+systemctl enable docker.service --now
 systemctl status docker.srevice
 ```
 
