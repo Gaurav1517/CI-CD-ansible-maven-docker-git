@@ -21,6 +21,11 @@
       pip:
         name: docker
         state: present
+    
+    - name: Image Pull Docker hub
+      community.docker.docker_image:
+        name: "gchauhan1517/java-app:{{ DOCKER_TAG }}"
+        source: pull 
 
     - name: Start the Java application container
       community.docker.docker_container:
