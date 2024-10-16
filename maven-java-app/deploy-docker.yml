@@ -1,31 +1,32 @@
 - hosts: dev
   become: true
   tasks:
-    - name: Install python pip
+    - name: Install python3-pip
       yum:
-        name: python-pip
+        name: python3-pip
         state: present
 
-    - name: Install docker
+    - name: Install Docker
       yum:
         name: docker
         state: present
 
-    - name: Start docker
+    - name: Start and enable Docker service
       service:
         name: docker
         state: started
         enabled: yes
 
-    - name: Install docker-py python module
+    - name: Install Docker SDK for Python
       pip:
-        name: docker-py
+        name: docker
         state: present
 
-    - name: Start the container
+    - name: Start the Java application container
       community.docker.docker_container:
         name: java-app
         image: "gchauhan1517/java-app:{{ DOCKER_TAG }}"
         state: started
         published_ports:
           - "8082:8082"
+
